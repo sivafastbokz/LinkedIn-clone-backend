@@ -13,14 +13,6 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    userCountry:{
-        type:String,
-        required:true
-    },
-    userCity:{
-        type:String,
-        required:true
-    },
     userPassword:{
         type:String,
         required:true,

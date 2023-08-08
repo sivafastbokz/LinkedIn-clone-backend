@@ -13,7 +13,7 @@ app.use(cors());
 mongoose.connect(serverConfig.mongooseUrl,{useNewUrlParser: true})
 
 app.post('/usersignup',async(req,res)=>{
-    const {userEmail,userFirstName, userLastName,userCountry,userCity, userPassword}=req.body
+    const {userEmail,userFirstName, userLastName, userPassword}=req.body
     try {
         const oldUserEmail = await userModel.findOne({userEmail:userEmail})
         if(oldUserEmail){
@@ -25,8 +25,6 @@ app.post('/usersignup',async(req,res)=>{
             userEmail:userEmail,
             userFirstName:userFirstName,
             userLastName:userLastName,
-            userCountry:userCountry,
-            userCity:userCity,
             userPassword:hashedPassword
         });
         await userDetails.save();
