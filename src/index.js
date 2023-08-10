@@ -6,6 +6,7 @@ const app = express();
 const jwt = require('jsonwebtoken');
 const serverConfig = require('./serverConfig');
 const userModel = require('./model/userSchema');
+const postModel = require('./model/postSchema');
 
 app.use(express.json());
 app.use(cors());
@@ -60,6 +61,31 @@ app.post('/usersignin',async(req,res)=>{
         if(res.status(200)){
             return res.json({status:'logged in successfully',data:token})
         }
+    } catch (error) {
+        console.log(error)
+        res.status(500).send('Internal server error');
+    }
+})
+
+app.post('/createpost',async(req,res)=>{
+    const{postTittle,postContent}=req.body
+    try {
+        const userPost = new postModel({
+            postTittle:postTittle,
+            postContent:postContent,
+        });
+        await userPost.save();
+        res.send('post successfully created')
+    } catch (error) {
+        console.log(error)
+        res.status(500).send('Internal server error');
+    }
+})
+
+app.get('/getuserpost',async(req,res)=>{
+    try {
+        const userPostsData = await postModel.find();
+        res.send(userPostsData)
     } catch (error) {
         console.log(error)
         res.status(500).send('Internal server error');
