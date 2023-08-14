@@ -1,7 +1,7 @@
-const userModel = require('../model/userSchema');
-const postModel = require('../model/postSchema');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const userModel = require('../model/userSchema');
+const postModel = require('../model/postSchema');
 const serverConfig = require('../serverConfig');
 
  const userSignUp =async(req,res)=>{
