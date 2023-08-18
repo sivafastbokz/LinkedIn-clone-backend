@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const userModel = require('../model/userSchema');
 const postModel = require('../model/postSchema');
 const serverConfig = require('../serverConfig');
+// const authenticate = require('../auth');
 
  const userSignUp =async(req,res)=>{
   const {userEmail,userFirstName, userLastName, userPassword}=req.body
@@ -59,10 +60,11 @@ const userSignIn = async(req,res)=>{
 }
 
 const userPost = async(req,res)=>{
-  const{postTittle,postContent}=req.body
+  const{postContent}=req.body
+  const userId = req.userId
   try {
       const userPost = new postModel({
-          postTittle:postTittle,
+          userId:userId,
           postContent:postContent,
       });
       await userPost.save();
@@ -75,7 +77,8 @@ const userPost = async(req,res)=>{
 
 const getUserPost = async(req,res)=>{
   try {
-    const userPostsData = await postModel.find();
+    const userId = req.userId
+    const userPostsData = await postModel.find({userId:userId});
     res.send(userPostsData)
 } catch (error) {
     console.log(error)
