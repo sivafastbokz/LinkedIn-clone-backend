@@ -10,6 +10,7 @@ const authenticate = (req,res,next)=>{
 
     const decode = jwt.verify(token,serverConfig.jwt_sercretKey)
     req.userId =decode.userId;
+    req.userName=decode.userName
     next();
  } catch (error) {
     console.log(error)

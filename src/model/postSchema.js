@@ -5,6 +5,12 @@ const postSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+
+    userName:{
+        type:String,
+        required:true
+    },
+    
     postContent:{
         type:String,
         required:true
