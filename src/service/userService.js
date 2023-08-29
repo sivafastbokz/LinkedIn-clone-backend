@@ -99,4 +99,15 @@ const allUserPost = async(req,res)=>{
     }
 }
 
-module.exports ={userSignUp,userSignIn,userPost,getUserList,getUserPost,allUserPost}
+const searchPost = async(req,res)=>{
+    try {
+        const searchUserPost = req.params.key.split('').join('.*')
+        const userPost = await postModel.find({postContent:{$regex:new RegExp(searchUserPost,'i')}})
+        res.json(userPost)
+    } catch (error) {
+        console.log(error)
+        res.status(500).send('Internal server error');
+    }
+}
+
+module.exports ={userSignUp,userSignIn,userPost,getUserList,getUserPost,allUserPost,searchPost}

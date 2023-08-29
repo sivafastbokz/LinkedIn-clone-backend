@@ -7,6 +7,7 @@ router.post('/usersignup',userService.userSignUp);
 router.get('/userdatalist',userService.getUserList);
 router.post('/usersignin',userService.userSignIn);
 router.get('/alluserpost',userService.allUserPost);
+router.get('/userpost/:key',userService.searchPost);
 router.post('/createpost',authenticate,userService.userPost);
 router.get('/getuserpost',authenticate,userService.getUserPost);
  
