@@ -91,7 +91,7 @@ const getUserPost = async(req,res)=>{
 
 const allUserPost = async(req,res)=>{
     try {
-        const allUserPost = await postModel.find()
+        const allUserPost = await postModel.find().sort({createdAt:-1}).limit(5)
         res.send(allUserPost)
     } catch (error) {
         console.log(error)
