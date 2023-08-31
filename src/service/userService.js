@@ -101,8 +101,8 @@ const allUserPost = async(req,res)=>{
 
 const searchPost = async(req,res)=>{
     try {
-        const searchUserPost = req.params.key.split('').join('.*')
-        const userPost = await postModel.find({postContent:{$regex:new RegExp(searchUserPost,'i')}})
+        const searchUserPost = req.params.key.split('').join('')
+        const userPost = await postModel.find({postContent:{$regex:new RegExp(`\\b${searchUserPost}\\b`,'i')}})
         res.json(userPost)
     } catch (error) {
         console.log(error)
