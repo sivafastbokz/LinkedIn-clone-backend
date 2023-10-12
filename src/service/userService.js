@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken');
 const userModel = require('../model/userSchema');
 const postModel = require('../model/postSchema');
 const serverConfig = require('../serverConfig');
-// const authenticate = require('../auth');
 
  const userSignUp =async(req,res)=>{
   const {userEmail,userFirstName, userLastName, userPassword}=req.body
